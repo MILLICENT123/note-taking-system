@@ -8,19 +8,23 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use App\Models\User; // Import User model or the model you're using for users
 
 class UserInfo extends Mailable
 {
     use Queueable, SerializesModels;
 
-   
+    public $user;  // Public property to hold user details
 
     /**
      * Create a new message instance.
+     *
+     * @param User $user
      */
-    public function __construct()
+    public function __construct(User $user)
     {
-        //
+        // Initialize user details
+        $this->user = $user;
     }
 
     /**
@@ -29,7 +33,7 @@ class UserInfo extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'User Info',
+            subject: 'New User Information',
         );
     }
 
@@ -39,7 +43,7 @@ class UserInfo extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'mail.UserDetails', 
         );
     }
 

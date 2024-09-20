@@ -12,11 +12,13 @@ class Note extends Model
     protected $fillable = [
         'title',
         'content',
-        'category_id' 
+        'category' 
     ];
 
     public function category()
     {
         return $this->belongsTo(Category::class); 
     }
+
+    
 }

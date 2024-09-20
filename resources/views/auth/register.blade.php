@@ -1,4 +1,4 @@
-@extends('layout.master')  <!-- Ensure you are extending the layout -->
+@extends('layout.master') 
 
 
 @section('content')
@@ -7,7 +7,7 @@
         <div class="col-md-3 col-lg-4">
             <!-- Card Container -->
             <div class="card shadow-lg border-light rounded-3">
-                <div class="card-header bg-success text-white text-center">
+                <div class="card-header bg-primary text-white text-center">
                     <h4 class="mb-0">Sign Up</h4>
                 </div>
                 <div class="card-body">
@@ -43,7 +43,7 @@
                             <label for="password_confirmation" class="form-label">Confirm Password</label>
                             <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
                         </div>
-                        <button type="submit" class="btn btn-success w-100">Sign Up</button>
+                        <button type="submit" class="btn btn-primary w-100">Sign Up</button>
                     </form>
                 </div>
                 <div class="card-footer text-center">

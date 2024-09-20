@@ -3,7 +3,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\UserController;
-use App\Http\Middleware\AdminGuard; // Import your middleware
+use App\Http\Controllers\CommentController;
+
+
+use App\Http\Middleware\AdminGuard; 
 
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -25,6 +28,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/notes/work', [NoteController::class, 'work'])->name('notes.work');
     Route::get('/notes/study', [NoteController::class, 'study'])->name('notes.study');
     Route::put('/notes/{note}', [NoteController::class, 'update'])->name('notes.update');
+    Route::get('/notes/recentnotes', [NoteController::class, 'recentNotes'])->name('notes.recentnotes');
+    Route::resource('comments', CommentController::class);
+    
+
+
     
     Route::resource('notes', NoteController::class);
 });

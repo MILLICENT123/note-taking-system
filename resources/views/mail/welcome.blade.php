@@ -3,28 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Our Service</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome | Millie's Note App</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .hero-section {
+            background: linear-gradient(to right, #ff6f61, #de64a1);
+            color: #fff;
+            padding: 100px 0;
+            position: relative;
+        }
+        .hero-section .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        .hero-section .content {
+            position: relative;
+            z-index: 1;
+        }
+        .btn-custom {
+            background-color: #ff6f61;
+            color: #fff;
+            border: none;
+        }
+        .btn-custom:hover {
+            background-color: #de64a1;
+            color: #fff;
+        }
+        .footer-custom {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+        }
+    </style>
 </head>
 <body>
-    <div class="container mt-5 mb-5">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-8 col-lg-6">
-                <div class="card">
-                    <div class="card-header text-center bg-primary text-white">
-                        <h1>Welcome, {{ $user->firstname }}!</h1>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">Dear {{ $user->firstname }},</p>
-                        <p class="card-text">We are thrilled to have you join our community! Thank you for signing up and becoming part of our service. We are committed to providing you with the best experience possible.</p>
-                        <p class="card-text">To get started, we encourage you to log in and explore all the features we offer. If you have any questions or need assistance, feel free to reach out to our support team.</p>
-                    </div>
-                    <div class="card-footer text-center">
-                        <a href="{{ route('register') }}" class="btn btn-primary">Get Started</a>
-                    </div>
-                </div>
-            </div>
+    <!-- Hero Section -->
+    <section class="hero-section text-center">
+        <div class="overlay"></div>
+        <div class="container content">
+            @if(Auth::check())
+                <h1 class="display-4">Welcome, {{ Auth::user()->firstname }}!</h1>
+            @else
+                <h1 class="display-4">Welcome, Guest!</h1>
+            @endif
+            <p class="lead">Take control of your ideas and tasks—manage your notes effortlessly and stay on top of your day!</p>
+            <a href="{{ route('homepage') }}" class="btn btn-custom btn-lg mt-3">Explore Your Dashboard</a>
         </div>
-    </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-custom text-center">
+        <p class="mb-0">&copy; {{ date('Y') }} Millie’s Note App. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

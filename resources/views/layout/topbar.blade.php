@@ -11,6 +11,8 @@
                     <a class="nav-link text-dark me-4" href="{{ route('homepage') }}">Dashboard</a>
                     <a class="nav-link text-dark me-4" href="{{ route('notes.index') }}">My Notes</a>
                     <a class="nav-link text-dark me-4" href="{{ route('users.index') }}">Users</a>
+                    <a href="{{ route('comments.index') }}" class="btn btn-primary">View Comments</a>
+
                     
                     <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                       @csrf

@@ -17,12 +17,11 @@
         </div>
         <div class="mb-3">
         <label for="category" class="form-label">Category</label>
-    <select class="form-control" id="category" name="category" required>
-        <option value="" disabled selected>Select a Category</option>
-        <option value="work">Work</option>
-        <option value="personal">Personal</option>
-        <option value="study">Study</option>
-    </select>
+        <select name="category" class="form-control">
+          <option value="personal">Personal</option>
+          <option value="work">Work</option>
+          <option value="study">Study</option>
+        </select>
 </div>
         <button type="submit" class="btn btn-primary">Add New Note 📝📔</button>
     </form>

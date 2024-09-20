@@ -1,94 +1,78 @@
 @extends('layout.master')
 
-
 @section('content')
 <div class="container my-5">
-    <!-- Page Header -->
-    <div class="hero-section position-relative text-white text-center py-5 rounded" style="background-image: url('/path/to/background-image.jpg'); background-size: cover; background-position: center; border-radius: 15px;">
-        <!-- Gradient Overlay -->
-        <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: pink; border-radius: 15px;"></div>
-        <div class="hero-content position-relative z-index-2">
-            <h1 class="display-4 font-weight-bold">Welcome to Millie's Note Taking App</h1>
-            <p class="lead mb-4">Organize your thoughts, tasks, and study materials all in one place.</p>
-            <a href="{{ route('notes.create') }}" class="btn btn-success btn-lg">Add a New Note</a>
+
+    <div class="dashboard-header d-flex align-items-center justify-content-between bg-light p-4 rounded shadow-sm">
+        <div>
+            <h1 class="display-5 font-weight-bold">Hello, {{ optional(Auth::user())->firstname }}!</h1>
+            <p class="lead">Let's organize your notes effectively today.</p>
+        </div>
+        <div>
+            <a href="{{ route('notes.create') }}" class="btn btn-primary btn-lg">+ Add a New Note</a>
         </div>
     </div>
-</div>
 
-    <!-- Notes Categories Buttons -->
+   
+    <div class="row text-center my-5">
+        <div class="col-md-3 mb-3">
+            <div class="card border-primary shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Total Notes</h5>
+                    <p class="display-4">45</p>
+                    <a href="{{ route('notes.index') }}" class="btn btn-outline-primary">View All Notes</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card border-success shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Recent Activity</h5>
+                    <p class="lead">You’ve added 3 new notes this week.</p>
+                    <a href="{{ route('notes.recentnotes') }}" class="btn btn-outline-success">View Recent Notes</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card border-info shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Personalized Tips</h5>
+                    <p class="lead">Stay organized with our daily tips!</p>
+                    <a href="#" class="btn btn-outline-info">View Tips</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card border-secondary shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Comments</h5>
+                    <p class="lead">Manage your comments efficiently.</p>
+                    <a href="{{ route('comments.index') }}" class="btn btn-outline-secondary">View Comments</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="text-center mb-5">
-        <h2 class="mb-4">Categories</h2>
+        <h2 class="mb-4">Explore Categories</h2>
         <div class="d-flex justify-content-center">
-            <a href="{{ route('notes.personal') }}" class="btn btn-outline-primary mx-2 btn-lg">Personal Notes</a>
-            <a href="{{ route('notes.work') }}" class="btn btn-outline-secondary mx-2 btn-lg">Work Notes</a>
-            <a href="{{ route('notes.study') }}" class="btn btn-outline-success mx-2 btn-lg">Study Notes</a>
+            <a href="{{ route('notes.personal') }}" class="btn btn-outline-primary mx-2 btn-lg">Personal</a>
+            <a href="{{ route('notes.work') }}" class="btn btn-outline-secondary mx-2 btn-lg">Work</a>
+            <a href="{{ route('notes.study') }}" class="btn btn-outline-success mx-2 btn-lg">Study</a>
         </div>
     </div>
 
-    <!-- Notes Sections -->
-    <div class="row">
-        <!-- Personal Notes Section -->
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Personal Notes</h5>
-                    <p class="card-text">Keep track of your personal thoughts and ideas here.</p>
-                    <!-- List of Notes -->
-                    <ul class="list-group list-group-flush mb-3">
-                        <li class="list-group-item">Personal Note 1</li>
-                        <li class="list-group-item">Personal Note 2</li>
-                        <li class="list-group-item">Personal Note 3</li>
-                    </ul>
-                    <a href="{{ route('notes.personal') }}" class="btn btn-primary btn-block">View All Personal Notes</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Work Notes Section -->
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Work Notes</h5>
-                    <p class="card-text">Manage your work-related notes and tasks efficiently.</p>
-                    <!-- List of Notes -->
-                    <ul class="list-group list-group-flush mb-3">
-                        <li class="list-group-item">Work Note 1</li>
-                        <li class="list-group-item">Work Note 2</li>
-                        <li class="list-group-item">Work Note 3</li>
-                    </ul>
-                    <a href="{{ route('notes.work') }}" class="btn btn-primary btn-block">View All Work Notes</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Study Notes Section -->
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Study Notes</h5>
-                    <p class="card-text">Organize your study materials and exam preparation notes.</p>
-                    <!-- List of Notes -->
-                    <ul class="list-group list-group-flush mb-3">
-                        <li class="list-group-item">Study Note 1</li>
-                        <li class="list-group-item">Study Note 2</li>
-                        <li class="list-group-item">Study Note 3</li>
-                    </ul>
-                    <a href="{{ route('notes.study') }}" class="btn btn-primary btn-block">View All Study Notes</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Featured Note Section -->
+   
     <div class="my-5">
-        <h2 class="text-center mb-4">Featured Note of the Week</h2>
-        <div class="card mx-auto" style="max-width: 600px;">
-            <div class="card-body">
-                <h5 class="card-title">How to Stay Organized</h5>
-                <p class="card-text">Discover some great tips and tricks on how to stay organized in your personal and professional life.</p>
+        <h2 class="text-center mb-4">This Week's Featured Note</h2>
+        <div class="card mx-auto shadow-sm" style="max-width: 700px;">
+            <div class="card-body text-center">
+                <h5 class="card-title">Boost Your Productivity with These Tips</h5>
+                <p class="card-text">Discover powerful strategies to stay focused and improve your workflow.</p>
                 <a href="#" class="btn btn-info">Read More</a>
             </div>
         </div>
     </div>
+
 </div>
 @endsection
