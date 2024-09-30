@@ -6,13 +6,13 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
 
 
-use App\Http\Middleware\AdminGuard; 
-
-
+Route::get('/', [AuthController::class, 'mainpage'])->name('mainpage');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
+// Route::get('/mainpage', [AuthController::class, 'mainpage'])->middleware('auth')->name('mainage');
+
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
@@ -36,9 +36,5 @@ Route::middleware('auth')->group(function () {
     
     Route::resource('notes', NoteController::class);
 });
-
-// Routes for super admin (only super admins can access)
-Route::middleware(['auth', AdminGuard::class])->group(function () {
     Route::resource('users', UserController::class);
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
-});
